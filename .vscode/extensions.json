@@ -1,0 +1,7 @@
+{
+    "recommendations": [
+        "styled-components.vscode-styled-components",
+        "formulahendry.code-runner",
+        "esbenp.prettier-vscode"
+    ]
+}
