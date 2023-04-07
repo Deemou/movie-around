@@ -4,11 +4,8 @@ import { IGetSearchResult, searchData } from "../api";
 import List from "../Components/List";
 
 const NoSearchData = styled.div`
-  position: absolute;
   top: 39%;
-  transform: translateY(-50%);
   padding-top: 8rem;
-  width: 100%;
   text-align: center;
   font-size: 2.8rem;
   font-weight: 500;
@@ -26,9 +23,7 @@ function SearchContent({ keyword }: { keyword: string }) {
   return (
     <>
       {data && data.results.length > 0 ? (
-        <>
-          <List data={data as IGetSearchResult} mediaType={mediaType} />
-        </>
+        <List data={data as IGetSearchResult} mediaType={mediaType} />
       ) : (
         <NoSearchData>No movie found for the keyword '{keyword}'</NoSearchData>
       )}

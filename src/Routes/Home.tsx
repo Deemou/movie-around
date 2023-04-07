@@ -14,9 +14,6 @@ import { Helmet } from "react-helmet-async";
 
 const Wrapper = styled.div`
   background: #000;
-  @media screen {
-    max-width: 1440px;
-  }
 `;
 
 const Loader = styled.div`

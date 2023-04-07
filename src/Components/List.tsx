@@ -9,11 +9,8 @@ import { useRecoilValue } from "recoil";
 
 const Container = styled.div<{ offset: number }>`
   display: grid;
-  grid-template-columns: repeat(
-    ${(props) => props.offset},
-    calc(100% / ${(props) => props.offset} - 5px)
-  );
-  gap: 2rem;
+  grid-template-columns: repeat(${(props) => props.offset}, 1fr);
+  gap: 1rem;
 `;
 
 const Box = styled(motion.div)<{ bgphoto: string }>`
@@ -38,7 +35,7 @@ const Title = styled(motion.div)`
   top: 15.8rem;
   width: 100%;
   padding: 1rem;
-  background-color: ${(props) => props.theme.black.lighter};
+  background-color: black;
   opacity: 0;
   text-align: center;
   font-size: 1.8rem;

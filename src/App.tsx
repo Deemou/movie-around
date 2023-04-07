@@ -10,9 +10,6 @@ import styled from "styled-components";
 
 const Wrapper = styled.div`
   margin: 0 auto;
-  @media only screen and (max-width: 500px) {
-    padding: 9rem 3rem;
-  }
   @media screen {
     max-width: 1440px;
   }

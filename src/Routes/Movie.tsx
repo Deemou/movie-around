@@ -4,13 +4,7 @@ import { IGetMoviesResult, getTopRatedMovies } from "../api";
 import { useQuery } from "@tanstack/react-query";
 
 const Wrapper = styled.div`
-  padding: 11rem 6rem;
-  @media only screen and (max-width: 500px) {
-    padding: 9rem 3rem;
-  }
-  @media screen {
-    max-width: 1440px;
-  }
+  padding: 10rem 6rem 3rem 6rem;
 `;
 
 const Loader = styled.div`

@@ -75,7 +75,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     font-weight: 300;
     font-family: 'Source Sans Pro', sans-serif;
-    color: ${(props) => props.theme.white.darker};
+    color: ${(props) => props.theme.white.lighter};
     line-height: 1.2;
     background-color: #000;
   }
@@ -83,8 +83,22 @@ const GlobalStyle = createGlobalStyle`
     text-decoration: none;
     color: inherit;
   }
+  button {
+    cursor: pointer;
+    border-style: solid;
+  }
   /* input */
-  input,textarea{font-size:1rem; border:0.05rem solid #000; background-color:#fff; transition:border .15s; box-sizing:border-box; vertical-align:middle; outline:none;}
+  input,textarea{color: white; font-size:1rem; border:0.05rem solid #000; transition:border .15s; box-sizing:border-box; vertical-align:middle; outline:none;}
+  input {
+    border: 1px solid ${(props) => props.theme.white.lighter};
+    border-radius: 0.5rem;
+    background-color: transparent;
+    outline: none;
+    z-index: -1;
+    &::placeholder {
+      color: white;
+    }
+  }
   input:-webkit-autofill,
   input:-webkit-autofill:hover,
   input:-webkit-autofill:focus,

@@ -21,7 +21,6 @@ const Nav = styled(motion.nav)`
   );
   padding: 2rem 6rem;
   font-size: 1.4rem;
-  color: #fff;
   z-index: 98;
   @media only screen and (max-width: 500px) {
     padding: 2rem 3rem;
@@ -111,25 +110,14 @@ const SearchIcon = styled(motion.svg)`
 const Input = styled(motion.input)`
   position: absolute;
   right: 0px;
-  padding: 0.5rem 1rem;
-  padding-left: 4rem;
-  border: 1px solid ${(props) => props.theme.white.lighter};
-  border-radius: 0.5rem;
+  padding: 0.5rem 4rem;
   font-size: 1.6rem;
-  color: white;
-  background-color: transparent;
-  z-index: -1;
   transform-origin: right center;
-  outline: none;
   &::placeholder {
-    color: #95a5a6;
     font-size: 1.2rem;
   }
   @media only screen and (max-width: 650px) {
     width: 15rem;
-    &::placeholder {
-      font-size: 0.4rem;
-    }
   }
 `;
 

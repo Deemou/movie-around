@@ -16,9 +16,6 @@ const Wrapper = styled(motion.div)`
   :hover .arrow {
     opacity: 1;
   }
-  @media screen {
-    max-width: 1440px;
-  }
 `;
 
 const SliderTitle = styled.div`
@@ -112,7 +109,7 @@ const Title = styled(motion.div)`
   top: 15.8rem;
   width: 100%;
   padding: 1rem;
-  background-color: ${(props) => props.theme.black.lighter};
+  background-color: black;
   opacity: 0;
   text-align: center;
   font-size: 1.8rem;
