@@ -58,10 +58,14 @@ interface ISearch {
   overview: string;
 }
 
-export function getTopRatedMovies() {
-  return fetch(`${BASE_PATH}/movie/top_rated?${TAIL_PATH}`).then((response) =>
-    response.json()
-  );
+function getRequestUrl(keyword: string, page: number) {
+  return `${BASE_PATH}/movie/${keyword}?${TAIL_PATH}&page=${page}`;
+}
+
+export async function getTopRatedMovies(page: number) {
+  const keyword = "top_rated";
+  const requestUrl = getRequestUrl(keyword, page);
+  return fetch(requestUrl).then((response) => response.json());
 }
 
 export function getNowPlayingMovies() {

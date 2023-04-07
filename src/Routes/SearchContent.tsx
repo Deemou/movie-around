@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useQuery } from "@tanstack/react-query";
 import { IGetSearchResult, searchData } from "../api";
 import List from "../Components/List";
+import { useLocation } from "react-router-dom";
 
 const NoSearchData = styled.div`
   top: 39%;
@@ -14,6 +15,9 @@ const NoSearchData = styled.div`
 const mediaType = "movie";
 
 function SearchContent({ keyword }: { keyword: string }) {
+  const location = useLocation();
+  const page = Number(new URLSearchParams(location.search).get("page")) || 1;
+
   const { data } = useQuery<IGetSearchResult>(
     ["search", keyword],
     () => searchData(keyword || ""),

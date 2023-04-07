@@ -6,6 +6,7 @@ import { useState } from "react";
 import Modal from "../Components/Modal";
 import { listContentCols } from "../atoms";
 import { useRecoilValue } from "recoil";
+import PaginationBar from "./pagination-bar";
 
 const Container = styled.div<{ offset: number }>`
   display: grid;
@@ -113,6 +114,7 @@ function List({ data, mediaType }: IList) {
           />
         )}
       </AnimatePresence>
+      <PaginationBar currentPage={data.page} lastPage={data.total_pages} />
     </>
   );
 }
