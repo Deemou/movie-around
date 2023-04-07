@@ -92,8 +92,9 @@ export function getDetailData(mediaType: string, id: number) {
   );
 }
 
-export function searchData(keyword: string) {
-  return fetch(`${BASE_PATH}/search/movie?${TAIL_PATH}&query=${keyword}`)
+export function searchData([keyword, page]: [string, number]) {
+  const requestUrl = `${BASE_PATH}/search/movie?${TAIL_PATH}&query=${keyword}&page=${page}`;
+  return fetch(requestUrl)
     .then((response) => response.json())
     .catch((err) => err);
 }

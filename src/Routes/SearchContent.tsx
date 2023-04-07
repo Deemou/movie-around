@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { IGetSearchResult, searchData } from "../api";
 import List from "../Components/List";
 import { useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 const NoSearchData = styled.div`
   top: 39%;
@@ -16,13 +17,20 @@ const mediaType = "movie";
 
 function SearchContent({ keyword }: { keyword: string }) {
   const location = useLocation();
-  const page = Number(new URLSearchParams(location.search).get("page")) || 1;
+  const [page, setPage] = useState<number>(1);
 
   const { data } = useQuery<IGetSearchResult>(
-    ["search", keyword],
-    () => searchData(keyword || ""),
+    ["search", [keyword, page]],
+    () => searchData([keyword, page] || ""),
     { useErrorBoundary: true }
   );
+
+  useEffect(() => {
+    const newPage = new URLSearchParams(location.search).get("page");
+    if (newPage) {
+      setPage(+newPage);
+    }
+  }, [page, location]);
 
   return (
     <>

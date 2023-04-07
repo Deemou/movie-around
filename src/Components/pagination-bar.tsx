@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Bar = styled.div`
   display: flex;
@@ -91,19 +91,29 @@ export default function PaginationBar({
   currentPage,
   lastPage,
 }: PaginationProps) {
+  const location = useLocation();
   const navigate = useNavigate();
+  const [page, setPage] = useState<number>(currentPage);
   const [pages, setPages] = useState<number[]>([]);
   const pageLimit = Math.min(5, lastPage);
   const onClickPage = (page: number) => {
-    navigate(`?page=${page}`);
+    setPage(page);
   };
   const onClickDirection = (direction: Direction) => {
     if (direction === "prev") {
-      navigate(`?page=${currentPage - 1}`);
+      setPage(currentPage - 1);
     } else {
-      navigate(`?page=${currentPage + 1}`);
+      setPage(currentPage + 1);
     }
   };
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    searchParams.set("page", page + "");
+    const requestUrl = location.pathname + "?" + searchParams.toString();
+    navigate(requestUrl);
+  }, [location.pathname, location.search, navigate, page]);
+
   useEffect(() => {
     if (currentPage <= 3) {
       setPages(Array.from({ length: pageLimit }, (_, i) => i + 1));
