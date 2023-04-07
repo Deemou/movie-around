@@ -14,11 +14,14 @@ const Container = styled.div<{ offset: number }>`
   gap: 1rem;
 `;
 
-const Box = styled(motion.div)<{ bgphoto: string }>`
+const Box = styled(motion.div).attrs<{ bgphoto: string }>((props) => ({
+  style: {
+    backgroundImage: `url(${props.bgphoto})`,
+  },
+}))<{ bgphoto: string }>`
   float: left;
   margin: 0.3rem;
   height: 16rem;
-  background-image: url(${(props) => props.bgphoto});
   background-size: cover;
   background-position: center;
   font-size: 4rem;
