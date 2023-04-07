@@ -52,10 +52,16 @@ export interface IGetSearchResult {
 
 interface ISearch {
   id: number;
-  overview: string;
-  title: string;
-  poster_path?: string;
   backdrop_path?: string;
+  poster_path?: string;
+  title: string;
+  overview: string;
+}
+
+export function getTopRatedMovies() {
+  return fetch(`${BASE_PATH}/movie/top_rated?${TAIL_PATH}`).then((response) =>
+    response.json()
+  );
 }
 
 export function getNowPlayingMovies() {

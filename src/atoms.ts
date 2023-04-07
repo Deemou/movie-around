@@ -41,3 +41,17 @@ export const slideContentCols = selector({
     }
   },
 });
+
+export const listContentCols = selector({
+  key: "listContentCols",
+  get: ({ get }) => {
+    const width = get(windowWidth);
+    if (width > 800) {
+      return 4;
+    } else if (width > 250) {
+      return 2;
+    } else {
+      return 1;
+    }
+  },
+});
