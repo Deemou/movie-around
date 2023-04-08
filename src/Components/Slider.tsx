@@ -176,19 +176,14 @@ export default function Slider({ data, title, listType, mediaType }: ISlider) {
   const [direction, setDirection] = useState(RIGHT);
   const [index, setIndex] = useState(0);
   const [leaving, setLeaving] = useState(false);
-  const [dragMode, setDragMode] = useState(false);
   const dragWrapperRef = useRef<HTMLDivElement>(null);
 
-  const toggleLeaving = (value: boolean) => {
-    setLeaving(value);
-    setDragMode(value);
-  };
   const changeIndex = () => {
     // 슬라이더 버튼 및 드래그로 인한 강제 흘러감 방지
-    if (leaving || dragMode) return;
+    if (leaving) return;
     if (!data) return;
 
-    toggleLeaving(true);
+    setLeaving(true);
     const totalLength = data.results.length;
     //20개 리스트에서 18개만 보여주기 위해 floor처리
     const maxIndex =
@@ -238,7 +233,7 @@ export default function Slider({ data, title, listType, mediaType }: ISlider) {
    * @param info
    */
   const dragEnd = (event: TouchEvent, info: PanInfo) => {
-    if (!leaving && !dragMode) {
+    if (!leaving) {
       if (info.delta.x > 1) {
         setDirection(RIGHT);
         changeIndex();
@@ -250,7 +245,7 @@ export default function Slider({ data, title, listType, mediaType }: ISlider) {
   };
 
   const onClickArrowBtn = (to: number) => {
-    if (!leaving && !dragMode) {
+    if (!leaving) {
       setDirection(to);
       changeIndex();
     }
@@ -275,7 +270,7 @@ export default function Slider({ data, title, listType, mediaType }: ISlider) {
       </RightArrowBtn>
       <AnimatePresence
         initial={false}
-        onExitComplete={() => toggleLeaving(false)}
+        onExitComplete={() => setLeaving(false)}
         custom={direction}
       >
         <Container
@@ -285,7 +280,7 @@ export default function Slider({ data, title, listType, mediaType }: ISlider) {
                 drag: "x",
                 dragConstraints: dragWrapperRef,
                 onDragEnd: dragEnd,
-                dragListener: !dragMode,
+                dragListener: !leaving,
               }
             : {})}
         >
