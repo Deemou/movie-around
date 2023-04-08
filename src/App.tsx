@@ -26,7 +26,7 @@ function App() {
   }, [setWidth]);
 
   return (
-    <Router>
+    <Router basename={process.env.PUBLIC_URL}>
       <Wrapper>
         <Header />
         <Routes>
