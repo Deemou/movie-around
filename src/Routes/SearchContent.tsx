@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { useQuery } from "@tanstack/react-query";
 import { IGetSearchResult, searchData } from "../api";
 import List from "../Components/List";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 const NoSearchData = styled.div`
@@ -17,6 +17,7 @@ const mediaType = "movie";
 
 function SearchContent({ keyword }: { keyword: string }) {
   const location = useLocation();
+  const navigate = useNavigate();
   const [page, setPage] = useState<number>(1);
 
   const { data } = useQuery<IGetSearchResult>(
@@ -26,11 +27,19 @@ function SearchContent({ keyword }: { keyword: string }) {
   );
 
   useEffect(() => {
-    const newPage = new URLSearchParams(location.search).get("page");
-    if (newPage) {
-      setPage(+newPage);
+    if (!data) return;
+    if (page > data.total_pages) {
+      setPage(1);
+      const searchParams = new URLSearchParams(location.search);
+      searchParams.delete("page");
+      navigate(`${location.pathname}?${searchParams.toString()}`);
+      return;
     }
-  }, [page, location]);
+    const newPage = Number(new URLSearchParams(location.search).get("page"));
+    if (!newPage) return;
+    if (newPage < 1) navigate(location.pathname);
+    setPage(newPage);
+  }, [page, location, navigate, data]);
 
   return (
     <>

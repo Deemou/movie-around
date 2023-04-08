@@ -93,26 +93,24 @@ export default function PaginationBar({
 }: PaginationProps) {
   const location = useLocation();
   const navigate = useNavigate();
-  const [page, setPage] = useState<number>(currentPage);
   const [pages, setPages] = useState<number[]>([]);
   const pageLimit = Math.min(5, lastPage);
   const onClickPage = (page: number) => {
-    setPage(page);
+    move(page);
   };
   const onClickDirection = (direction: Direction) => {
     if (direction === "prev") {
-      setPage(currentPage - 1);
+      move(currentPage - 1);
     } else {
-      setPage(currentPage + 1);
+      move(currentPage + 1);
     }
   };
-
-  useEffect(() => {
+  const move = (num: number) => {
     const searchParams = new URLSearchParams(location.search);
-    searchParams.set("page", page + "");
-    const requestUrl = location.pathname + "?" + searchParams.toString();
+    searchParams.set("page", num + "");
+    const requestUrl = `${location.pathname}?${searchParams.toString()}`;
     navigate(requestUrl);
-  }, [location.pathname, location.search, navigate, page]);
+  };
 
   useEffect(() => {
     if (currentPage <= 3) {

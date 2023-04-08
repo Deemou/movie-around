@@ -2,7 +2,7 @@ import styled from "styled-components";
 import List from "../Components/List";
 import { IGetMoviesResult, getTopRatedMovies } from "../api";
 import { useQuery } from "@tanstack/react-query";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 const Wrapper = styled.div`
@@ -20,6 +20,7 @@ const mediaType = "movie";
 
 function Movie() {
   const location = useLocation();
+  const navigate = useNavigate();
   const [page, setPage] = useState<number>(1);
 
   const { data, isLoading } = useQuery<IGetMoviesResult>(
@@ -28,11 +29,16 @@ function Movie() {
   );
 
   useEffect(() => {
-    const newPage = new URLSearchParams(location.search).get("page");
-    if (newPage) {
-      setPage(+newPage);
+    if (!data) return;
+    if (page > data.total_pages) {
+      setPage(1);
+      navigate(`${location.pathname}`);
+      return;
     }
-  }, [page, location]);
+    let newPage = Number(new URLSearchParams(location.search).get("page"));
+    if (!newPage) newPage = 1;
+    setPage(newPage);
+  }, [page, location, data, navigate]);
 
   return (
     <Wrapper>
