@@ -17,12 +17,10 @@ const Nav = styled(motion.nav)`
     rgba(0, 0, 0, 0.7) 10%,
     transparent
   );
-  padding: 2rem 6rem;
+  padding: 2rem 0;
+  padding-right: 4rem;
   font-size: 1.4rem;
   z-index: 98;
-  @media only screen and (max-width: 500px) {
-    padding: 2rem 3rem;
-  }
   @media screen {
     max-width: 1440px;
   }
@@ -37,7 +35,7 @@ const Logo = styled(motion.h1)`
   color: #a30303;
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: black;
-  font-size: 3.5rem;
+  font-size: 3rem;
   font-weight: 600;
   font-stretch: condensed;
   margin-right: 2rem;
@@ -109,13 +107,19 @@ const Input = styled(motion.input)`
   position: absolute;
   right: 0px;
   padding: 0.5rem 4rem;
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   transform-origin: right center;
   &::placeholder {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
   }
-  @media only screen and (max-width: 650px) {
-    width: 15rem;
+  @media only screen and (max-width: 800px) {
+    width: 25rem;
+  }
+  @media only screen and (max-width: 700px) {
+    width: 21rem;
+  }
+  @media only screen and (max-width: 550px) {
+    width: 18rem;
   }
 `;
 

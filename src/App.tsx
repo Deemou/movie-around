@@ -10,6 +10,7 @@ import styled from "styled-components";
 
 const Wrapper = styled.div`
   margin: 0 auto;
+  padding: 0 2rem;
   @media screen {
     max-width: 1440px;
   }
