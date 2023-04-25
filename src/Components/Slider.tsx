@@ -174,7 +174,7 @@ export default function Slider({ data, title, listType, mediaType }: ISlider) {
   const [contentId, setContentId] = useState(0);
   const [isBoxClicked, setIsBoxClicked] = useState(false);
   const [direction, setDirection] = useState(RIGHT);
-  const [index, setIndex] = useState(0);
+  const [index, setIndex] = useState(1);
   const [leaving, setLeaving] = useState(false);
   const dragWrapperRef = useRef<HTMLDivElement>(null);
 
@@ -185,29 +185,22 @@ export default function Slider({ data, title, listType, mediaType }: ISlider) {
 
     setLeaving(true);
     const totalLength = data.results.length;
-    //20개 리스트에서 18개만 보여주기 위해 floor처리
-    const maxIndex =
-      totalLength % offset === 0
-        ? Math.floor(totalLength / offset) - 1
-        : Math.floor(totalLength / offset);
+    const maxIndex = totalLength / offset;
 
     direction === RIGHT
-      ? setIndex((prev) => (prev >= maxIndex ? 0 : prev + 1))
-      : setIndex((prev) => (prev === 0 ? maxIndex : prev - 1));
+      ? setIndex((prev) => (prev >= maxIndex ? 1 : prev + 1))
+      : setIndex((prev) => (prev === 1 ? maxIndex : prev - 1));
   };
 
   //resize로 인해 index의 값이 엄청 커진 상태에서 offset 개수가 많아지면 값이 안 맞는 현상 막기 위해 재연산 처리 추가
   useEffect(() => {
     if (!data) return;
 
-    const dataTotalLen = data.results.length;
-    const maxIdx =
-      dataTotalLen % offset === 0
-        ? Math.floor(dataTotalLen / offset) - 1
-        : Math.floor(dataTotalLen / offset);
+    const totalLength = data.results.length;
+    const maxIndex = totalLength / offset;
 
-    if (index > maxIdx) {
-      setIndex(maxIdx);
+    if (index > maxIndex) {
+      setIndex(maxIndex);
     }
   }, [offset, data, index, setIndex]);
 
@@ -285,7 +278,7 @@ export default function Slider({ data, title, listType, mediaType }: ISlider) {
             : {})}
         >
           {data?.results
-            .slice(offset * index, offset * index + offset)
+            .slice(offset * (index - 1), offset * index)
             .map((content) => (
               <Box
                 key={content.id}
