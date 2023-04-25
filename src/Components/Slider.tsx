@@ -226,22 +226,22 @@ export default function Slider({ data, title, listType, mediaType }: ISlider) {
    * @param info
    */
   const dragEnd = (event: TouchEvent, info: PanInfo) => {
-    if (!leaving) {
-      if (info.delta.x > 1) {
-        setDirection(RIGHT);
-        changeIndex();
-      } else if (info.delta.x < -1) {
-        setDirection(LEFT);
-        changeIndex();
-      }
+    if (leaving) return;
+
+    if (info.delta.x < -1) {
+      setDirection(RIGHT);
+      changeIndex();
+    } else if (info.delta.x > 1) {
+      setDirection(LEFT);
+      changeIndex();
     }
   };
 
   const onClickArrowBtn = (to: number) => {
-    if (!leaving) {
-      setDirection(to);
-      changeIndex();
-    }
+    if (leaving) return;
+
+    setDirection(to);
+    changeIndex();
   };
 
   return (
