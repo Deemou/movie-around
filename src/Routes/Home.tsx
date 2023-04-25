@@ -23,14 +23,6 @@ const Loader = styled.div`
   height: 20vh;
 `;
 
-const SliderArea = styled.div`
-  position: relative;
-  margin-top: -16.8rem;
-  @media screen and (max-width: 700px) {
-    margin-top: -8.8rem;
-  }
-`;
-
 function Home() {
   const { data: nowPlayingMoviesList, isLoading } = useQuery<IGetMoviesResult>(
     [MOVIE_TYPE[0], "nowPlayingMovies"],
@@ -58,7 +50,7 @@ function Home() {
         ) : (
           <>
             <Banner bannerInfo={nowPlayingMoviesList?.results[0] as IMovie} />
-            <SliderArea>
+            <div>
               <Slider
                 data={nowPlayingMoviesList as IGetMoviesResult}
                 title={"NOW PLAYING"}
@@ -77,7 +69,7 @@ function Home() {
                 listType={MOVIE_TYPE[2]}
                 mediaType={"movie"}
               />
-            </SliderArea>
+            </div>
           </>
         )}
       </Wrapper>
