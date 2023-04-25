@@ -68,6 +68,8 @@ const GlobalStyle = createGlobalStyle`
     color: white;
     line-height: 1.2;
     background-color: #000;
+    width: 100vw;
+    overflow-x: hidden;
   }
   a {
     text-decoration: none;

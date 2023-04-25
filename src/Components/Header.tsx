@@ -18,7 +18,7 @@ const Nav = styled(motion.nav)`
     transparent
   );
   padding: 2rem 0;
-  padding-right: 4rem;
+  padding-right: 30px;
   font-size: 1.4rem;
   z-index: 98;
   @media screen {

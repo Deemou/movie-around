@@ -117,8 +117,9 @@ const Title = styled(motion.div)`
 
 const rowVariants = {
   hidden: (to: number) => {
+    const sliderWidth = Math.min(1440, window.innerWidth) - 30;
     return {
-      x: to === 1 ? window.innerWidth + 5 : -window.innerWidth - 5,
+      x: to === 1 ? sliderWidth + 5 : -sliderWidth - 5,
     };
   },
   visible: {
@@ -126,8 +127,9 @@ const rowVariants = {
     y: 0,
   },
   exit: (to: number) => {
+    const sliderWidth = Math.min(1440, window.innerWidth) - 30;
     return {
-      x: to === 1 ? -window.innerWidth - 5 : window.innerWidth + 5,
+      x: to === 1 ? -sliderWidth - 5 : sliderWidth + 5,
     };
   },
 };
