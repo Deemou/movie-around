@@ -70,7 +70,7 @@ const RightArrowBtn = styled(ArrowBtn)`
   right: 0;
 `;
 
-const Container = styled(motion.div)`
+const Row = styled(motion.div)`
   position: absolute;
   left: 0;
   margin-bottom: 3rem;
@@ -116,18 +116,18 @@ const Title = styled(motion.div)`
 `;
 
 const rowVariants = {
-  hidden: (right: number) => {
+  hidden: (to: number) => {
     return {
-      x: right === 1 ? window.innerWidth + 5 : -window.innerWidth - 5,
+      x: to === 1 ? window.innerWidth + 5 : -window.innerWidth - 5,
     };
   },
   visible: {
     x: 0,
     y: 0,
   },
-  exit: (right: number) => {
+  exit: (to: number) => {
     return {
-      x: right === 1 ? -window.innerWidth - 5 : window.innerWidth + 5,
+      x: to === 1 ? -window.innerWidth - 5 : window.innerWidth + 5,
     };
   },
 };
@@ -266,7 +266,7 @@ export default function Slider({ data, title, listType, mediaType }: ISlider) {
         onExitComplete={() => setLeaving(false)}
         custom={direction}
       >
-        <Container
+        <Row
           {...rowProps}
           {...(mobile
             ? {
@@ -296,7 +296,7 @@ export default function Slider({ data, title, listType, mediaType }: ISlider) {
                 <Title variants={titleVariants}>{content.title}</Title>
               </Box>
             ))}
-        </Container>
+        </Row>
       </AnimatePresence>
       <AnimatePresence>
         {isBoxClicked && (
