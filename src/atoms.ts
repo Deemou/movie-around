@@ -26,7 +26,9 @@ export const slideContentCols = selector({
   key: "slideContentCols",
   get: ({ get }) => {
     const width = get(windowWidth);
-    if (width > 900) {
+    if (width >= 1200) {
+      return 5;
+    } else if (width >= 800) {
       return 4;
     } else {
       return 2;
@@ -38,9 +40,9 @@ export const listContentCols = selector({
   key: "listContentCols",
   get: ({ get }) => {
     const width = get(windowWidth);
-    if (width > 800) {
+    if (width >= 800) {
       return 4;
-    } else if (width > 250) {
+    } else if (width >= 250) {
       return 2;
     } else {
       return 1;

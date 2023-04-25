@@ -32,7 +32,7 @@ const ArrowBtn = styled(motion.div)<{ mobile: number }>`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 6rem;
+  width: 5rem;
   height: 16rem;
   color: #fff;
   background-color: rgba(0, 0, 0, 0.5);
@@ -52,7 +52,7 @@ const ArrowBtn = styled(motion.div)<{ mobile: number }>`
     width: 2.8rem;
     height: 2.8rem;
   }
-  @media only screen and (max-width: 500px) {
+  @media only screen and (max-width: 499px) {
     width: 5rem;
     height: 5rem;
     svg {
