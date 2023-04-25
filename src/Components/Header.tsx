@@ -2,8 +2,6 @@ import styled from "styled-components";
 import { Link, useMatch, PathMatch, useNavigate } from "react-router-dom";
 import { motion, useAnimation, useScroll } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import { useRecoilValue } from "recoil";
-import { isMobile } from "../atoms";
 import { useForm } from "react-hook-form";
 import { BsArrowUpRight } from "react-icons/bs";
 
@@ -154,7 +152,6 @@ function Header() {
   const inputAnimation = useAnimation();
   const logoAnimation = useAnimation();
   const { scrollY } = useScroll();
-  const mobile = useRecoilValue(isMobile);
   const inputRef = useRef<HTMLInputElement | null>(null);
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm<IForm>({
@@ -162,18 +159,9 @@ function Header() {
       keyword: "",
     },
   });
-  const initializationInput = () => {
-    if (mobile) {
-      setSearchOpen(false);
-      inputAnimation.start({
-        scaleX: 0,
-      });
-    }
-  };
   const { ref, ...rest } = register("keyword", {
     required: "Input keyword.",
     minLength: 2,
-    onBlur: initializationInput,
   });
   const onValid = (data: IForm) => {
     navigate(`/search?keyword=${data.keyword}`);
