@@ -6,7 +6,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 const Wrapper = styled.div`
-  padding: 10rem 6rem 3rem 6rem;
+  padding: 10rem 0 3rem 0;
 `;
 
 const Loader = styled.div`

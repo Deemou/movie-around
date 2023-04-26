@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import SearchContent from "./SearchContent";
 
 const Wrapper = styled.div`
-  padding: 10rem 6rem 3rem 6rem;
+  padding: 10rem 0 3rem 0;
 `;
 
 const KeywordResult = styled.h2`
