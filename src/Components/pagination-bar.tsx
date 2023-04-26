@@ -16,6 +16,9 @@ const Bar = styled.div`
     font-weight: 600;
     border-radius: 0.8rem;
     margin: 0 0.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   svg {
     background-color: black;
