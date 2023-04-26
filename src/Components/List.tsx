@@ -8,6 +8,10 @@ import { listContentCols } from "../atoms";
 import { useRecoilValue } from "recoil";
 import PaginationBar from "./pagination-bar";
 
+const Wrapper = styled(motion.div)`
+  overflow: hidden;
+`;
+
 const Container = styled.div<{ offset: number }>`
   display: grid;
   grid-template-columns: repeat(${(props) => props.offset}, 1fr);
@@ -88,7 +92,7 @@ function List({ data, mediaType }: IList) {
   };
 
   return (
-    <>
+    <Wrapper>
       <Container offset={offset}>
         {data?.results.map((content) => (
           <Box
@@ -118,7 +122,7 @@ function List({ data, mediaType }: IList) {
         )}
       </AnimatePresence>
       <PaginationBar currentPage={data.page} lastPage={data.total_pages} />
-    </>
+    </Wrapper>
   );
 }
 
