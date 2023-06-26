@@ -29,11 +29,13 @@ Movie 탭에서는 모든 영화를 인기순으로 제공합니다.
 
 - 모든 영화를 인기순으로 제공
 - 현재 상영중, 개봉 예정, 현재 인기 영화를 슬라이더 형식으로 제공
-- 영화 정보는 모달 창을 통해 제공
 - 영화 검색
-- 편리한 페이지네이션 바
 
 ## Environment
 - Language: JavaScript, TypeScript
-- Library: React.js, Styled Components, React Query, Recoil, Framer Motion
+- Framework: React.js
+- CSS: Styled Components
+- Server Data State Management: React Query
+- Status Management: Recoil
+- Other Library: Framer Motion
 - Deploy: Github
