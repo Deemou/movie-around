@@ -36,6 +36,6 @@ Movie 탭에서는 모든 영화를 인기순으로 제공합니다.
 - Framework: React.js
 - CSS: Styled Components
 - Server Data State Management: React Query
-- Status Management: Recoil
+- State Management: Recoil
 - Other Library: Framer Motion
 - Deploy: Github
